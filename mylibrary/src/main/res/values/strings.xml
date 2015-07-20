@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">BaseProject</string>
+
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eu pulvinar enim. Praesent libero nisl, ultricies vel maximus eu, maximus et nisi. </string>
+</resources>

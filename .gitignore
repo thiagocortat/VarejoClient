@@ -17,6 +17,13 @@ gen/
 build/
 /*/build/
 
+/local.properties
+/.idea/workspace.xml
+/.idea/libraries
+.DS_Store
+/build
+/captures
+
 # Local configuration file (sdk path, etc)
 local.properties
 

@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Anjo</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="shopping_cart">Pedido</string>
+    <string name="cliente">Cliente</string>
+    <string name="abrir_dia">Clique aqui para abrir os dias</string>
+    <string name="setores">Escolha uma das nossas seções</string>
+    <string name="estado">Estado</string>
+    <string name="pagamento">Pagamento</string>
+    <string name="clientes">Clientes</string>
+    <string name="title_activity_cartao_credito">Cartão de Crédito</string>
+    <string name="title_activity_conta_bancaria">Débito em Conta</string>
+    <string name="title_activity_configuration">Configuração</string>
+</resources>

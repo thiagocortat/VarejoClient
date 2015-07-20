@@ -1,0 +1,53 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 22
+    buildToolsVersion "22.0.1"
+
+    defaultConfig {
+        applicationId "br.com.devianto.anjo"
+        minSdkVersion 15
+        targetSdkVersion 22
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.support:appcompat-v7:22.2.0'
+
+    compile 'com.android.support:recyclerview-v7:22.2.0'
+    compile 'com.android.support:cardview-v7:22.2.0'
+
+    compile 'com.rengwuxian.materialedittext:library:1.8.2'
+    compile 'com.j256.ormlite:ormlite-android:4.48'
+    compile 'com.j256.ormlite:ormlite-core:4.48'
+    compile 'com.googlecode.android-query:android-query:0.25.9'
+
+    compile 'com.squareup.okhttp:okhttp:2.2.0'
+    compile 'com.squareup.okhttp:okhttp-urlconnection:2.2.0'
+
+    compile 'info.hoang8f:android-segmented:1.0.5'
+    compile 'com.facebook.conceal:conceal:1.0.1@aar'
+    compile 'net.grandcentrix.tray:tray:0.9.2'
+
+    compile ('commons-validator:commons-validator:1.4.1') {
+        exclude group: "commons-collections", module: "commons-collections"
+        exclude group: "commons-logging", module: "commons-logging"
+        exclude group: "commons-digester", module: "commons-digester"
+        exclude group: "commons-beanutils", module: "commons-beanutils"
+    }
+
+    compile('com.mikepenz.materialdrawer:library:2.9.7@aar') {
+        transitive = true
+    }
+
+    compile project(":mylibrary")
+}
