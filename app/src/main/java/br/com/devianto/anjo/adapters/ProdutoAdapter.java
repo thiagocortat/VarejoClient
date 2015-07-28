@@ -11,6 +11,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 
+import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -48,7 +49,9 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ProdutoV
 
         Produto produto = products.get(position);
 
-        Picasso.with(context).load(produto.getDefaultImage())
+        Glide.with(context).load(produto.getDefaultImage())
+                .crossFade()
+                .centerCrop()
                 .placeholder(R.drawable.img_default_placeholder)
                 .into(holder.imagem);
 
@@ -78,6 +81,13 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ProdutoV
 
     }
 
+    public void setProducts(List<Produto> products) {
+        this.products.clear();
+        notifyDataSetChanged();
+
+        this.products.addAll(products);
+        notifyItemRangeInserted(0, products.size());
+    }
 
     class ProdutoViewHolder extends RecyclerView.ViewHolder {
 

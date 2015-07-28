@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
@@ -18,6 +19,7 @@ import java.util.List;
 
 import br.com.devianto.anjo.R;
 import br.com.devianto.anjo.restmodel.models.ItemPedido;
+import br.com.devianto.anjo.utilities.ParseUtilities;
 
 public class ShoppingCartAdapter extends ArrayAdapter<ItemPedido> {
 
@@ -43,30 +45,35 @@ public class ShoppingCartAdapter extends ArrayAdapter<ItemPedido> {
             viewHolder = (ViewHolder) view.getTag();
         }
 
+        Glide.with(activity).load(itempedido.getProduto().getDefaultImage())
+                .crossFade()
+                .fitCenter()
+                .into(viewHolder.imagem);
+
 //        Uri uri = Uri.fromFile(new File(itempedido.getProduto().getDefaultImage()));
 //        // 1st: reset the imageView
 //        Picasso.with(activity).cancelRequest(viewHolder.imagem);
 //        // 2nd start a new load for the imageView
 //        Picasso.with(activity).load(uri).skipMemoryCache().into(viewHolder.imagem);
-//
+
 //        viewHolder.remover.setTag(itempedido);
 //        viewHolder.remover.setOnClickListener(new RemoverItemPedidoOnClickListener());
-//
-//        viewHolder.idProduto.setText(itempedido.getId().toString());
-//        viewHolder.nome.setText(itempedido.getProduto().getTitulo());
-//        viewHolder.preco.setText(ParseUtilities.formatMoney(itempedido.getTotal()));
-//
+
+        viewHolder.idProduto.setText(itempedido.getId().toString());
+        viewHolder.nome.setText(itempedido.getProduto().getTitulo());
+        viewHolder.preco.setText(ParseUtilities.formatMoney(itempedido.getTotal()));
+
 //        if (itempedido.getAtributo() != null) {
 //            viewHolder.atributo.setText(itempedido.getAtributo().getDescricao());
 //        }else {
 //            viewHolder.atributo.setText("");
 //        }
-//
-//
-//        viewHolder.preco.setText(ParseUtilities.formatMoney(itempedido.getTotal()));
-//
-//        viewHolder.quantidade.setText(itempedido.getQuantidade().toString());
-//        viewHolder.quantidade.setTag(itempedido);
+
+
+        viewHolder.preco.setText(ParseUtilities.formatMoney(itempedido.getTotal()));
+
+        viewHolder.quantidade.setText(itempedido.getQuantidade().toString());
+        viewHolder.quantidade.setTag(itempedido);
 //        viewHolder.quantidade.setOnFocusChangeListener(new AtualizarQuantidadeItemPedidoEvent());
 
         return view;

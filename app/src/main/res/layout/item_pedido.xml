@@ -6,8 +6,8 @@
 
     <ImageView
         android:id="@id/imagem"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
         android:scaleType="fitCenter"
         android:layout_gravity="center_vertical"/>
 
@@ -56,7 +56,7 @@
                     android:id="@id/quantidade"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Quantidade"
+                    android:hint="QTD"
                     android:inputType="number"
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp" android:layout_weight="0.3"

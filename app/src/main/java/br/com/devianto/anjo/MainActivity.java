@@ -30,14 +30,16 @@ import br.com.thiagocortat.mylibrary.base.DemoFragment;
 public class MainActivity extends BaseActivity {
 
     private Drawer.Result result = null;
+    protected Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
         //Add Profile
         final IProfile profile = new ProfileDrawerItem()
@@ -48,7 +50,7 @@ public class MainActivity extends BaseActivity {
         // Create the AccountHeader
         AccountHeader.Result headerResult = new AccountHeader()
                 .withActivity(this)
-//                .withHeaderBackground(R.drawable.header)
+                .withHeaderBackground(R.drawable.img_header)
                 .addProfiles(profile)
                 .withAlternativeProfileHeaderSwitching(false)
                 .withProfileImagesClickable(false)
@@ -62,11 +64,11 @@ public class MainActivity extends BaseActivity {
                 .withActionBarDrawerToggleAnimated(true)
                 .withActionBarDrawerToggle(true)
                 .addDrawerItems(
-                        new PrimaryDrawerItem().withName("Faturamento").withIdentifier(0),
-                        new PrimaryDrawerItem().withName("Produtos").withIdentifier(1),
-                        new PrimaryDrawerItem().withName("RH").withIdentifier(2),
-                        new PrimaryDrawerItem().withName("CRM").withIdentifier(3),
-                        new DividerDrawerItem(),
+                        new PrimaryDrawerItem().withName("Produtos").withIdentifier(0),
+//                        new PrimaryDrawerItem().withName("Produtos").withIdentifier(1),
+//                        new PrimaryDrawerItem().withName("RH").withIdentifier(2),
+//                        new PrimaryDrawerItem().withName("CRM").withIdentifier(3),
+//                        new DividerDrawerItem(),
                         new SecondaryDrawerItem().withName("Configuração"),
                         new SecondaryDrawerItem().withName("Logout")
                 )
@@ -77,8 +79,7 @@ public class MainActivity extends BaseActivity {
                         if (i == 0) {
                             Fragment f = ProdutosFragment.newInstance();
                             getFragmentManager().beginTransaction().replace(R.id.frame_container, f).commit();
-                        }
-                        else {
+                        } else {
                             Fragment f = DemoFragment.newInstance("");
                             getFragmentManager().beginTransaction().replace(R.id.frame_container, f).commit();
                         }
@@ -99,15 +100,49 @@ public class MainActivity extends BaseActivity {
 
                 })
                         //just use this with the Drawer.Builder
-                .withSelectedItem(-1)
-                .withFireOnInitialOnClick(false)
+                .withSelectedItem(0)
+                .withSavedInstance(savedInstanceState)
+                .withFireOnInitialOnClick(true)
                 .build();
 
-        result.openDrawer();
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+//        result.openDrawer();
         result.getActionBarDrawerToggle().setDrawerIndicatorEnabled(true);
+        //react on the keyboard
+        result.keyboardSupportEnabled(this, true);
 
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        //add the values which need to be saved from the drawer to the bundle
+        outState = result.saveInstanceState(outState);
+        super.onSaveInstanceState(outState);
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        //handle the back press :D close the drawer first and if the drawer is closed close the activity
+        if (result != null && result.isDrawerOpen()) {
+            result.closeDrawer();
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                if (result.isDrawerOpen())
+                    result.closeDrawer();
+                else
+                    result.openDrawer();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
 

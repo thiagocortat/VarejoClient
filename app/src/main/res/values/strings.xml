@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Anjo</string>
+    <string name="app_name">Varejo Digital</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
@@ -14,4 +14,6 @@
     <string name="title_activity_cartao_credito">Cartão de Crédito</string>
     <string name="title_activity_conta_bancaria">Débito em Conta</string>
     <string name="title_activity_configuration">Configuração</string>
+
+    <string name="empty_products">Não existem produtos cadastrados para esta seção.</string>
 </resources>

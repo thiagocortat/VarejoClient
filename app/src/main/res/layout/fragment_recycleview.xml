@@ -2,10 +2,46 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-   <android.support.v7.widget.RecyclerView
-       android:id="@+id/recyclerView"
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"
-       />
+
+    <ProgressBar
+        android:id="@+id/progressMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/menu"
+        android:layout_alignBottom="@+id/menu"
+        android:layout_centerHorizontal="true"
+        style="@style/Widget.AppCompat.ProgressBar" />
+
+    <com.mobileia.mcdropdownmenu.MCDropdownMenu
+        android:id="@+id/menu"
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+    </com.mobileia.mcdropdownmenu.MCDropdownMenu>
+
+    <FrameLayout
+        android:id="@+id/frameRecycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/menu">
+
+        <TextView
+            android:id="@+id/txNotContent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:padding="@dimen/margin"
+            style="@style/TextAppearance.AppCompat.Medium"
+            android:text="@string/empty_products"
+            android:visibility="gone"
+            tools:visibility="visible"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </FrameLayout>
+
+
 
 </RelativeLayout>
