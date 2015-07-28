@@ -1,7 +1,6 @@
 package br.com.devianto.anjo.activities;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,14 +9,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -67,7 +64,7 @@ public class DetailActivity extends BaseActivity implements View.OnClickListener
     public void onAfterInjectViews(Bundle savedInstanceState) {
 
         mRecyclerView.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
 
         toolbar = (Toolbar) findViewById(br.com.thiagocortat.mylibrary.R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -77,7 +74,8 @@ public class DetailActivity extends BaseActivity implements View.OnClickListener
         mAdapter.setListener(new OnSelectedImagem() {
             @Override
             public void selectedImagem(Imagem imagem) {
-                setImagemProduto(imagem.getFileName());
+//                setImagemProduto(imagem.getFileName());
+                setImagemProduto(imagem.getURL());
             }
         });
 
@@ -113,18 +111,24 @@ public class DetailActivity extends BaseActivity implements View.OnClickListener
     private void setImagemProduto(String path){
 
         try{
-//            Uri uri = Uri.fromFile(new File(path));
-            Picasso.with(this).load(path).into(imagemProduto, new Callback() {
-                @Override
-                public void onSuccess() {
-                    // The MAGIC happens here!
-//                    mAttacher = new PhotoViewAttacher(imagemProduto);
-                }
 
-                @Override
-                public void onError() {
-                }
-            });
+            Glide.with(this).load(path)
+                    .crossFade()
+                    .fitCenter()
+                    .placeholder(R.drawable.img_default_placeholder)
+                    .into(imagemProduto);
+//            Uri uri = Uri.fromFile(new File(path));
+//            Picasso.with(this).load(path).into(imagemProduto, new Callback() {
+//                @Override
+//                public void onSuccess() {
+//                    // The MAGIC happens here!
+//                    mAttacher = new PhotoViewAttacher(imagemProduto);
+//                }
+//
+//                @Override
+//                public void onError() {
+//                }
+//            });
         }catch (NullPointerException e) {
             imagemProduto.setImageResource(R.drawable.img_default_placeholder);
         }

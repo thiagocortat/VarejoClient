@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import br.com.devianto.anjo.restmodel.models.ApiEstados;
 import br.com.devianto.anjo.restmodel.models.ApiProduto;
+import br.com.devianto.anjo.restmodel.models.ApiSecoes;
 import retrofit.Callback;
 import retrofit.http.Body;
 import retrofit.http.GET;
@@ -22,9 +23,13 @@ public interface ApiService {
     @Headers({ "Content-type: application/json; charset=UTF-8" })
     void obtainProdutos(Callback<ApiProduto> callback);
 
+    @GET("/secao/{id}/produtos/todosAtributos/list.json")
+    @Headers({ "Content-type: application/json; charset=UTF-8" })
+    void obtainProdutosBySecao(@Path("id")long id, Callback<ApiProduto> callback);
+
     @GET("/1/secoes.json")
     @Headers({ "Content-type: application/json; charset=UTF-8" })
-    void obtainSecoes(Callback<ApiEstados> callback);
+    void obtainSecoes(Callback<ApiSecoes> callback);
 
     @GET("/1/secoes.json")
     @Headers({ "Content-type: application/json; charset=UTF-8" })

@@ -15,11 +15,11 @@ public class ApiSecoes implements Serializable{
     @SerializedName("list")
     private List<Secao> list;
 
-    public List<Secao> getEstados() {
+    public List<Secao> getSecoes() {
         return list;
     }
 
-    public void setEstados(List<Secao> estados) {
-        this.list = estados;
+    public void setSecoes(List<Secao> secoes) {
+        this.list = secoes;
     }
 }
