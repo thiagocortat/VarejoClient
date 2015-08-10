@@ -6,6 +6,7 @@ import java.util.HashMap;
 import br.com.devianto.anjo.restmodel.models.ApiEstados;
 import br.com.devianto.anjo.restmodel.models.ApiProduto;
 import br.com.devianto.anjo.restmodel.models.ApiSecoes;
+import br.com.devianto.anjo.restmodel.models.User;
 import retrofit.Callback;
 import retrofit.http.Body;
 import retrofit.http.GET;
@@ -18,6 +19,11 @@ import retrofit.http.Path;
  * Created by thiagocortat on 5/24/15.
  */
 public interface ApiService {
+
+    @GET("/perfis.json")
+    @Headers({ "Content-type: application/json; charset=UTF-8" })
+    void login(Callback<User> callback);
+
 
     @GET("/loja/1/produtos/todosAtributos/list.json")
     @Headers({ "Content-type: application/json; charset=UTF-8" })

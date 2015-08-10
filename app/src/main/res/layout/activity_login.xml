@@ -3,57 +3,83 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
-    android:background="@color/White"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin" >
+    android:background="@color/White">
+
+    <include layout="@layout/includes_toolbar"/>
+
+    <RelativeLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:layout_below="@+id/toolbar"
+        android:padding="@dimen/margin"
+        android:background="@color/White">
 
     <com.rengwuxian.materialedittext.MaterialEditText
-            android:id="@id/email"
+            android:id="@+id/email"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="E-mail"
             android:text="marcelosrodrigues@gmail.com"
             android:inputType="textEmailAddress" android:layout_marginTop="20dp"
-        style="@style/EditTextCadastroStyle">
+            style="@style/EditTextCadastroStyle">
 
         <requestFocus />
     </com.rengwuxian.materialedittext.MaterialEditText>
 
     <com.rengwuxian.materialedittext.MaterialEditText
-            android:id="@id/password"
+            android:id="@+id/password"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="78.0dip"
             android:ems="10"
             android:hint="Senha"
             android:text="2pk0#3ty?"
             android:inputType="textPassword"
-        style="@style/EditTextCadastroStyle"/>
+            android:layout_below="@+id/email"
+            style="@style/EditTextCadastroStyle"/>
 
-    <LinearLayout
-            android:id="@id/linear_item"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true" >
 
-        <Button
-                android:id="@id/logar"
-                android:layout_width="0.0dip"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:text="Atualizar" />
+    <Button
+        android:id="@+id/loginButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/password"
+        android:onClick="loginUser"
+        android:text="Entrar" />
 
-        <Button
-                android:id="@+id/cancelar"
-                android:layout_width="0.0dip"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:text="Cancelar" />
-    </LinearLayout>
+    <Button
+        android:id="@+id/signUpText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/loginButton"
+        android:layout_centerHorizontal="true"
+        android:onClick="signUpUser"
+        android:text="Cadastrar-se" />
+
+    </RelativeLayout>
+
+    <!--<LinearLayout-->
+            <!--android:id="@id/linear_item"-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentBottom="true" >-->
+
+        <!--<Button-->
+                <!--android:id="@id/logar"-->
+                <!--android:layout_width="0.0dip"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="0.5"-->
+                <!--android:text="Atualizar" />-->
+
+        <!--<Button-->
+                <!--android:id="@+id/cancelar"-->
+                <!--android:layout_width="0.0dip"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="0.5"-->
+                <!--android:text="Cancelar" />-->
+    <!--</LinearLayout>-->
 
 </RelativeLayout>

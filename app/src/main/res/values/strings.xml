@@ -11,9 +11,32 @@
     <string name="estado">Estado</string>
     <string name="pagamento">Pagamento</string>
     <string name="clientes">Clientes</string>
+    <string name="login">Login</string>
     <string name="title_activity_cartao_credito">Cartão de Crédito</string>
     <string name="title_activity_conta_bancaria">Débito em Conta</string>
     <string name="title_activity_configuration">Configuração</string>
 
     <string name="empty_products">Não existem produtos cadastrados para esta seção.</string>
+
+    <string name="avancar">Avançar</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="concluir">Concluir</string>
+    <string name="promocao">Produtos em destaque</string>
+    <string name="title_activity_detail">Informações do Produto</string>
+
+    <string name="item_wihout_description">Produto sem descrição</string>
+
+    <string name="title_well_come">Bem Vindo ao Catálogo Digital</string>
+    <string name="message_department">O que você deseja ver nesse departamento</string>
+    <string name="choice_department">Escolha ao lado o departamento que deseja visitar</string>
+    <string name="sign_up">Cadastrar-se</string>
+    <string name="credit_card">Cartão de Crédito</string>
+
+
+    <string-array name="meios_pagamento">
+        <item>Cartão de Débito</item>
+        <item>Cartão de Crédito</item>
+        <item>Delivery</item>
+        <item>Retirar produto na Loja e pagar no Caixa</item>
+    </string-array>
 </resources>

@@ -1,5 +1,6 @@
 package br.com.devianto.anjo.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 import br.com.devianto.anjo.R;
 import br.com.devianto.anjo.adapters.ShoppingCartAdapter;
 import br.com.devianto.anjo.restmodel.models.Pedido;
+import br.com.devianto.anjo.restmodel.models.User;
 import br.com.devianto.anjo.utilities.PriceUtilities;
 import br.com.thiagocortat.mylibrary.utilities.ParseUtilities;
 import butterknife.ButterKnife;
@@ -36,7 +38,16 @@ public class ShoppingCartActivity extends AbstractActivity {
 //                    .setPedido(pedido)
 //					.setMessage("Cadastro de cliente")
 //                    .show();
-            Toast.makeText(this, "Funcionalidade em desenvolvimento.", Toast.LENGTH_LONG).show();
+//            Toast.makeText(this, "Funcionalidade em desenvolvimento.", Toast.LENGTH_LONG).show();
+
+            User currentUser = User.getCurrentInstance();
+            if (currentUser == null) {
+                loadLoginView();
+            }
+            else {
+    			Intent intent = new Intent(this, PagamentoActivity.class);
+    			startActivity(intent);
+            }
 
         } else if (view.getId() == R.id.continuar_comprando) {
 //			Intent intent = new Intent(this, HomeActivity.class);
@@ -63,10 +74,10 @@ public class ShoppingCartActivity extends AbstractActivity {
 
     }
 
-//    @Override
-//    public void onBackPressed() {
-//        final Intent intent = new Intent(this,HomeActivity.class);
-//        startActivity(intent);
-//        this.finish();
-//    }
+    private void loadLoginView() {
+        Intent intent = new Intent(this, LoginActivity.class);
+//        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+    }
 }

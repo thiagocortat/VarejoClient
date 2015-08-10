@@ -2,6 +2,7 @@ package br.com.devianto.anjo.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.RadioButton;
@@ -9,9 +10,13 @@ import android.widget.RadioGroup;
 
 import com.androidquery.AQuery;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.devianto.anjo.R;
 import br.com.devianto.anjo.restmodel.models.FormaPagamento;
 import br.com.devianto.anjo.restmodel.models.Pedido;
+import br.com.devianto.anjo.utilities.PriceUtilities;
 import br.com.thiagocortat.mylibrary.utilities.ParseUtilities;
 
 
@@ -49,30 +54,41 @@ public class PagamentoActivity extends AbstractActivity
 
     @Override
     protected void onCreate(Bundle bundle) {
-
         super.onCreate(bundle);
         setContentView(R.layout.activity_forma_pagamento_main);
-//        pedido = PriceUtilities.getPedido();
-//        aq = new AQuery(this);
-//        RadioGroup radiogroup = (RadioGroup) findViewById(R.id.formapagamento);
+
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        pedido = PriceUtilities.getPedido();
+        aq = new AQuery(this);
+        RadioGroup radiogroup = (RadioGroup) findViewById(R.id.formapagamento);
+
+        String[] strPagamentos = getResources().getStringArray(R.array.meios_pagamento);
+        List<FormaPagamento> formasPagamento = new ArrayList<>();
 //        List<FormaPagamento> formasPagamento = new FormaPagamentoRepository(this).list();
-//
-//        int i = 0;
-//        for (FormaPagamento forma : formasPagamento) {
-//            RadioButton radiobutton = new RadioButton(this);
-//            radiobutton.setId(forma.getId().intValue());
-//            radiobutton.setTag(forma);
-//            radiobutton.setText(forma.getNome());
-//            radiobutton.setHint(forma.getNome());
-//            radiogroup.addView(radiobutton);
-//            if (i == 0) {
-//                radiobutton.setChecked(true);
-//            }
-//            i++;
-//        }
-//        aq.id(R.id.total_pedido).text(ParseUtilities.formatMoney(pedido.getTotal()));
-//        aq.id(R.id.salvar).clicked(this);
-//        aq.id(R.id.cancelar).clicked(this);
+
+        long id = 0;
+        for (String meioPag : strPagamentos) {
+            formasPagamento.add(new FormaPagamento(id, meioPag));
+        }
+
+        int i = 0;
+        for (FormaPagamento forma : formasPagamento) {
+            RadioButton radiobutton = new RadioButton(this);
+            radiobutton.setId(forma.getId().intValue());
+            radiobutton.setTag(forma);
+            radiobutton.setText(forma.getNome());
+            radiobutton.setHint(forma.getNome());
+            radiogroup.addView(radiobutton);
+            if (i == 0) {
+                radiobutton.setChecked(true);
+            }
+            i++;
+        }
+        aq.id(R.id.total_pedido).text(ParseUtilities.formatMoney(pedido.getTotal()));
+        aq.id(R.id.salvar).clicked(this);
+        aq.id(R.id.cancelar).clicked(this);
 
     }
 
