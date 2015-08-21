@@ -12,6 +12,15 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/toolbar">
 
+        <TextView
+            android:id="@+id/txTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Selecione a Forma de Pagamento:"
+            android:textColor="@color/Black"
+            android:padding="@dimen/margin"
+            style="@style/TextAppearance.AppCompat.Title"/>
+
         <LinearLayout
             android:id="@id/linear_item"
             android:layout_width="fill_parent"
@@ -19,23 +28,24 @@
             android:layout_alignParentBottom="true" >
 
             <Button
-                android:id="@id/salvar"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:text="AVANÇAR" />
-
-            <Button
                 android:id="@id/cancelar"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
                 android:text="CANCELAR" />
+
+            <Button
+                android:id="@id/salvar"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:text="AVANÇAR" />
         </LinearLayout>
 
         <ScrollView android:id="@id/scroll"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
+            android:layout_below="@+id/txTitle"
             android:layout_above="@id/linear_item">
 
             <RadioGroup

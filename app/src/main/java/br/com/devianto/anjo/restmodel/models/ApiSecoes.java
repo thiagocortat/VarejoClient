@@ -4,6 +4,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,5 +22,13 @@ public class ApiSecoes implements Serializable{
 
     public void setSecoes(List<Secao> secoes) {
         this.list = secoes;
+    }
+
+
+    public static List<Secao> getHomeSecao() {
+
+        List<Secao> list = new ArrayList<>();
+        list.add(new Secao("Home"));
+        return list;
     }
 }

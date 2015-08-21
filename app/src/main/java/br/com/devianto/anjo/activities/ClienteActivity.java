@@ -197,7 +197,6 @@ public class ClienteActivity extends AbstractActivity
         aq.id(R.id.ultimoNome).text(ultimoNome);
     }
 
-
     public String getPrimeiroNome() {
         return aq.id(R.id.primeiroNome).getText().toString();
     }

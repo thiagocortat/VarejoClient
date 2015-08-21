@@ -124,6 +124,9 @@ public class ProdutosFragment extends BaseFragment {
 
             @Override
             public void failure(RetrofitError error) {
+
+                menuAdapter = new MenuAdapter(getActivity(), ApiSecoes.getHomeSecao());
+                dropdownMenu.setAdapter(menuAdapter);
                 showHeaderProgress(false);
             }
         });

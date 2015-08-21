@@ -59,17 +59,17 @@ public class BaseActivity extends AppCompatActivity implements OnLayoutInjectLis
 
     }
 
-    @Override
-    public void onStart() {
-        try {
-            super.onStart();
-
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-//            FontsUtil.setRobotoFont(this, (ViewGroup) getWindow().getDecorView());
-        }catch (Exception e) {}
-
-    }
+//    @Override
+//    public void onStart() {
+//        try {
+//            super.onStart();
+//
+//            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//
+////            FontsUtil.setRobotoFont(this, (ViewGroup) getWindow().getDecorView());
+//        }catch (Exception e) {}
+//
+//    }
 
     public void showProgress() {
 

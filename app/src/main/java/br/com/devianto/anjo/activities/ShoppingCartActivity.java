@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 import br.com.devianto.anjo.R;
 import br.com.devianto.anjo.adapters.ShoppingCartAdapter;
+import br.com.devianto.anjo.alerts.ClienteDialog;
 import br.com.devianto.anjo.restmodel.models.Pedido;
 import br.com.devianto.anjo.restmodel.models.User;
 import br.com.devianto.anjo.utilities.PriceUtilities;
@@ -34,20 +35,20 @@ public class ShoppingCartActivity extends AbstractActivity {
     public void onClick(View view) {
         if (view.getId() == R.id.finalizar_pedido) {
             Pedido pedido = PriceUtilities.getPedido();
-//			new ClienteDialog(this)
-//                    .setPedido(pedido)
-//					.setMessage("Cadastro de cliente")
-//                    .show();
+			new ClienteDialog(this)
+                    .setPedido(pedido)
+					.setMessage("Cadastro de cliente")
+                    .show();
 //            Toast.makeText(this, "Funcionalidade em desenvolvimento.", Toast.LENGTH_LONG).show();
 
-            User currentUser = User.getCurrentInstance();
-            if (currentUser == null) {
-                loadLoginView();
-            }
-            else {
-    			Intent intent = new Intent(this, PagamentoActivity.class);
-    			startActivity(intent);
-            }
+//            User currentUser = User.getCurrentInstance();
+//            if (currentUser == null) {
+//                loadLoginView();
+//            }
+//            else {
+//    			Intent intent = new Intent(this, PagamentoActivity.class);
+//    			startActivity(intent);
+//            }
 
         } else if (view.getId() == R.id.continuar_comprando) {
 //			Intent intent = new Intent(this, HomeActivity.class);
@@ -63,8 +64,9 @@ public class ShoppingCartActivity extends AbstractActivity {
         setContentView(R.layout.activity_shopping_cart_main);
         ButterKnife.inject(this);
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(br.com.thiagocortat.mylibrary.R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Pedido pedido = PriceUtilities.getPedido();
         ShoppingCartAdapter shoppingcartadapter = new ShoppingCartAdapter(this, new ArrayList<>(pedido.getItens()));

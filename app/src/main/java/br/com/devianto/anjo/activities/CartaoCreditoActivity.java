@@ -1,7 +1,9 @@
 package br.com.devianto.anjo.activities;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
@@ -24,11 +26,13 @@ import br.com.devianto.anjo.restmodel.models.Pedido;
 import br.com.devianto.anjo.utilities.ParseUtilities;
 import br.com.devianto.anjo.utilities.PriceUtilities;
 
-public class CartaoCreditoActivity extends AbstractActivity
+public class CartaoCreditoActivity extends AbstractMeioPagamentoActivity
         implements
         OnClickListener {
 
     private AQuery aq;
+
+    private ProgressDialog progress;
 
     @Override
     public void onClick(View view) {
@@ -65,16 +69,16 @@ public class CartaoCreditoActivity extends AbstractActivity
 //                    intent = new Intent(this, AutenticacaoParaEnvioDePedidoActivity.class);
 //                    startActivity(intent);
 //                    this.finish();
-//
 
-
+                    sendPurchaseToServer();
 
                 }
                 else {
-                    PriceUtilities.novoPedido();
-                    new ActionDialog(this)
+//                    PriceUtilities.novoPedido();
+                    new ErrorAlert(this)
                             .setTitle("Pedido")
-                            .setMessage("Seu pedido foi salvo com sucesso e será enviado tão logo tenha conexão com a internet disponível.")
+                            .setMessage("Você está sem conexão de Internet, por favor tente novamente!")
+                            .setCancelable(true)
                             .show();
                 }
             }
@@ -139,6 +143,10 @@ public class CartaoCreditoActivity extends AbstractActivity
     protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         setContentView(R.layout.activity_cartao_credito);
+
+        Toolbar toolbar = (Toolbar) findViewById(br.com.thiagocortat.mylibrary.R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         aq = new AQuery(this);
         aq.id(R.id.salvar).clicked(this);

@@ -12,15 +12,14 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Toast;
 
+
 import com.mikepenz.materialdrawer.Drawer;
+import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.accountswitcher.AccountHeader;
-import com.mikepenz.materialdrawer.model.DividerDrawerItem;
+import com.mikepenz.materialdrawer.accountswitcher.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
-import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
 import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
-import com.mikepenz.materialdrawer.model.interfaces.IProfile;
-
 
 import br.com.devianto.anjo.fragments.ProdutosFragment;
 import br.com.thiagocortat.mylibrary.activities.BaseActivity;
@@ -29,7 +28,7 @@ import br.com.thiagocortat.mylibrary.base.DemoFragment;
 
 public class MainActivity extends BaseActivity {
 
-    private Drawer.Result result = null;
+    private Drawer result = null;
     protected Toolbar toolbar;
 
     @Override
@@ -39,30 +38,31 @@ public class MainActivity extends BaseActivity {
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
-        //Add Profile
-        final IProfile profile = new ProfileDrawerItem()
-                .withName("João").withEmail("joao.teste@projetandoo.com")
-                .setEnabled(false);
-//                .withIcon(getResources().getDrawable(R.drawable.profile5));
-
+//        //Add Profile
+//        final IProfile profile = new ProfileDrawerItem()
+//                .withName("João").withEmail("joao.teste@projetandoo.com")
+//                .setEnabled(false);
+////                .withIcon(getResources().getDrawable(R.drawable.profile5));
+//
         // Create the AccountHeader
-        AccountHeader.Result headerResult = new AccountHeader()
+        AccountHeader headerResult = new AccountHeaderBuilder()
                 .withActivity(this)
                 .withHeaderBackground(R.drawable.img_header)
-                .addProfiles(profile)
+//                .addProfiles(profile)
                 .withAlternativeProfileHeaderSwitching(false)
                 .withProfileImagesClickable(false)
                 .withSelectionListEnabled(false)
                 .build();
 
-        result = new Drawer()
+        result = new DrawerBuilder()
                 .withActivity(this)
                 .withAccountHeader(headerResult)
                 .withToolbar(toolbar)
-                .withActionBarDrawerToggleAnimated(true)
-                .withActionBarDrawerToggle(true)
+
+//                .withActionBarDrawerToggleAnimated(true)
+//                .withActionBarDrawerToggle(true)
                 .addDrawerItems(
                         new PrimaryDrawerItem().withName("Produtos").withIdentifier(0),
 //                        new PrimaryDrawerItem().withName("Produtos").withIdentifier(1),
@@ -74,7 +74,7 @@ public class MainActivity extends BaseActivity {
                 )
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int i, long id, IDrawerItem drawerItem) {
+                    public boolean onItemClick(AdapterView<?> parent, View view, int i, long id, IDrawerItem drawerItem) {
 
                         if (i == 0) {
                             Fragment f = ProdutosFragment.newInstance();
@@ -96,20 +96,28 @@ public class MainActivity extends BaseActivity {
 //                            getFragmentManager().beginTransaction().replace(R.id.frame_container, f).commit();
 //                        }
 
+                        return false;
                     }
 
                 })
                         //just use this with the Drawer.Builder
-                .withSelectedItem(0)
+                //.withSelectedItem(0)
                 .withSavedInstance(savedInstanceState)
-                .withFireOnInitialOnClick(true)
+//                .withShowDrawerOnFirstLaunch(true)
+//                .withFireOnInitialOnClick(true)
                 .build();
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        result.getActionBarDrawerToggle().setDrawerIndicatorEnabled(true);
 
 
 //        result.openDrawer();
-        result.getActionBarDrawerToggle().setDrawerIndicatorEnabled(true);
-        //react on the keyboard
-        result.keyboardSupportEnabled(this, true);
+        //only set the active selection or active profile if we do not recreate the activity
+        if (savedInstanceState == null) {
+            // set the selection to the item with the identifier 11
+            result.setSelection(0);
+
+        }
 
     }
 

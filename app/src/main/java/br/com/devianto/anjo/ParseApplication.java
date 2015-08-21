@@ -2,6 +2,9 @@ package br.com.devianto.anjo;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.ContextWrapper;
+
+import com.pixplicity.easyprefs.library.Prefs;
 
 
 public class ParseApplication extends Application {
@@ -13,6 +16,14 @@ public class ParseApplication extends Application {
     super.onCreate();
 
     setAppContext(getApplicationContext());
+
+    // Initialize the Prefs class
+    new Prefs.Builder()
+            .setContext(this)
+            .setMode(ContextWrapper.MODE_PRIVATE)
+            .setPrefsName(getPackageName())
+            .setUseDefaultSharedPreference(true)
+            .build();
 
     // Initialize Crash Reporting.
 //    ParseCrashReporting.enable(this);

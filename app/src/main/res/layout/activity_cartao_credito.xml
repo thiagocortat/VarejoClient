@@ -3,17 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/White"
-    android:paddingBottom="@dimen/margin"
-    android:paddingLeft="@dimen/margin"
-    android:paddingRight="@dimen/margin"
-    android:paddingTop="@dimen/margin" >
+    tools:context="br.com.devianto.anjo.activities.CartaoCreditoActivity">
+
+    <include layout="@layout/includes_toolbar"/>
 
     <LinearLayout
         android:id="@id/linear_item"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true" >
+        android:layout_alignParentBottom="true"
+        android:padding="@dimen/margin" >
+
+        <Button
+            android:id="@id/cancelar"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="@string/cancelar" />
 
         <Button
             android:id="@id/salvar"
@@ -22,20 +30,17 @@
             android:layout_weight="0.5"
             android:text="@string/avancar" />
 
-        <Button
-            android:id="@id/cancelar"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:text="@string/cancelar" />
     </LinearLayout>
 
 
-    <ScrollView android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_above="@id/linear_item" android:layout_alignParentTop="true">
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar"
+        android:layout_above="@id/linear_item"
+        android:padding="@dimen/margin">
 
-    <LinearLayout
+            <LinearLayout
         android:id="@id/pagamentos"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -104,6 +109,8 @@
         
     </LinearLayout>
 
-</ScrollView>
+    </ScrollView>
+
+
 
 </RelativeLayout>

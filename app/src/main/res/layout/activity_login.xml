@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="E-mail"
-            android:text="marcelosrodrigues@gmail.com"
+            android:text="marcelosrodrigues@globo.com"
             android:inputType="textEmailAddress" android:layout_marginTop="20dp"
             style="@style/EditTextCadastroStyle">
 
@@ -36,10 +36,11 @@
             android:layout_alignParentLeft="true"
             android:ems="10"
             android:hint="Senha"
-            android:text="2pk0#3ty?"
+            android:text="12345678"
             android:inputType="textPassword"
             android:layout_below="@+id/email"
             style="@style/EditTextCadastroStyle"/>
+        <!--android:text="2pk0#3ty?"-->
 
 
     <Button

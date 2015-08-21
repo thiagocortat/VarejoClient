@@ -68,6 +68,7 @@ public class DetailActivity extends BaseActivity implements View.OnClickListener
 
         toolbar = (Toolbar) findViewById(br.com.thiagocortat.mylibrary.R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         List<Imagem> list = new ArrayList<>(mProduto.getImagens());
         mAdapter = new ImagemAdapter(list);

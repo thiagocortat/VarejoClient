@@ -8,6 +8,8 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 
+import br.com.devianto.anjo.activities.ClienteActivity;
+import br.com.devianto.anjo.activities.ListClientesActivity;
 import br.com.devianto.anjo.restmodel.models.Pedido;
 import br.com.thiagocortat.mylibrary.utilities.Constante;
 
@@ -25,34 +27,34 @@ public class ClienteDialog extends AbstractDialog {
     }
 
     public void show() {
-//        AlertDialog dialog = getBuilder().create();
-//
-//        dialog.setButton(Dialog.BUTTON_NEGATIVE, "Cliente novo", new OnClickListener() {
-//
-//            @Override
-//            public void onClick(DialogInterface dialog, int which) {
-//                Activity context = (Activity) getContext();
-//                Intent intent = new Intent(context, ClienteActivity.class);
-//                intent.putExtra(Constante.PEDIDO, pedido);
-//                context.startActivity(intent);
-//
-//            }
-//        });
-//
-//
-//        dialog.setButton(Dialog.BUTTON_POSITIVE, "Cliente cadastrado", new OnClickListener() {
-//
-//            @Override
-//            public void onClick(DialogInterface dialog, int which) {
-//                Activity context = (Activity) getContext();
-//                Intent intent = new Intent(context, ListClientesActivity.class);
-//                intent.putExtra(Constante.PEDIDO, pedido);
-//                context.startActivity(intent);
-//
-//            }
-//        });
-//
-//        dialog.show();
+        AlertDialog dialog = getBuilder().create();
+
+        dialog.setButton(Dialog.BUTTON_NEGATIVE, "Cliente novo", new OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Activity context = (Activity) getContext();
+                Intent intent = new Intent(context, ClienteActivity.class);
+                intent.putExtra(Constante.PEDIDO, pedido);
+                context.startActivity(intent);
+
+            }
+        });
+
+
+        dialog.setButton(Dialog.BUTTON_POSITIVE, "Cliente cadastrado", new OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Activity context = (Activity) getContext();
+                Intent intent = new Intent(context, ListClientesActivity.class);
+                intent.putExtra(Constante.PEDIDO, pedido);
+                context.startActivity(intent);
+
+            }
+        });
+
+        dialog.show();
     }
 
 

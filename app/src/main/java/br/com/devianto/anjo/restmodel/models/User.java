@@ -1,13 +1,11 @@
 package br.com.devianto.anjo.restmodel.models;
 
 import com.google.gson.annotations.SerializedName;
+import com.pixplicity.easyprefs.library.Prefs;
 
-import net.grandcentrix.tray.TrayAppPreferences;
 
 import java.io.Serializable;
 import java.util.List;
-
-import br.com.devianto.anjo.ParseApplication;
 import br.com.devianto.anjo.utilities.Serializabler;
 
 /**
@@ -29,20 +27,20 @@ public class User implements Serializable {
     private List<String> roles;
 
     public static User getCurrentInstance() {
-        TrayAppPreferences appPreferences = new TrayAppPreferences(ParseApplication.getAppContext());
-        String userString = appPreferences.getString(USER_KEY, null);
+//        TrayAppPreferences appPreferences = new TrayAppPreferences(ParseApplication.getAppContext());
+        String userString = Prefs.getString(USER_KEY, null);
         return (userString != null ? (User) Serializabler.toObject(userString) : null);
     }
 
     public static void saveCurrentUser(User user) {
-        TrayAppPreferences appPreferences = new TrayAppPreferences(ParseApplication.getAppContext());
-        appPreferences.put(USER_KEY, Serializabler.toString(user));
+//        TrayAppPreferences appPreferences = new TrayAppPreferences(ParseApplication.getAppContext());
+        Prefs.putString(USER_KEY, Serializabler.toString(user));
     }
 
     public static void resetCurrentUser() {
 
-        TrayAppPreferences appPreferences = new TrayAppPreferences(ParseApplication.getAppContext());
-        appPreferences.remove(USER_KEY);
+//        TrayAppPreferences appPreferences = new TrayAppPreferences(ParseApplication.getAppContext());
+        Prefs.remove(USER_KEY);
     }
 
 

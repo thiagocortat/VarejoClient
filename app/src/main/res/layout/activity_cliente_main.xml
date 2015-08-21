@@ -17,18 +17,18 @@
         android:paddingTop="@dimen/margin" >
 
         <Button
-            android:id="@id/salvar"
-            android:layout_width="0.0dip"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:text="@string/avancar" />
-
-        <Button
             android:id="@id/cancelar"
             android:layout_width="0.0dip"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
             android:text="@string/cancelar" />
+
+        <Button
+            android:id="@id/salvar"
+            android:layout_width="0.0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="@string/avancar" />
     </LinearLayout>
 
     <ScrollView
@@ -73,13 +73,13 @@
             android:paddingTop="20.0dip" />
 
 
-        <EditText
-                android:id="@+id/passwordField"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/usernameField"
-                android:inputType="textPassword"
-                android:hint="Senha" />
+        <!--<EditText-->
+                <!--android:id="@+id/passwordField"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@+id/usernameField"-->
+                <!--android:inputType="textPassword"-->
+                <!--android:hint="Senha" />-->
 
             <EditText
                 android:id="@id/dataNascimento"

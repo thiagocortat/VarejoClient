@@ -59,7 +59,8 @@ public class ShoppingCartAdapter extends ArrayAdapter<ItemPedido> {
 //        viewHolder.remover.setTag(itempedido);
 //        viewHolder.remover.setOnClickListener(new RemoverItemPedidoOnClickListener());
 
-        viewHolder.idProduto.setText(itempedido.getId().toString());
+//        viewHolder.idProduto.setText(itempedido.getId().toString());
+
         viewHolder.nome.setText(itempedido.getProduto().getTitulo());
         viewHolder.preco.setText(ParseUtilities.formatMoney(itempedido.getTotal()));
 
@@ -84,7 +85,7 @@ public class ShoppingCartAdapter extends ArrayAdapter<ItemPedido> {
     private class ViewHolder {
 
         ImageView imagem;
-        TextView idProduto, atributo, nome, preco;
+        TextView  nome, preco;//idProduto, atributo,
         EditText quantidade;
         Button remover;
 
@@ -92,9 +93,9 @@ public class ShoppingCartAdapter extends ArrayAdapter<ItemPedido> {
         public ViewHolder(View view){
 
             imagem = (ImageView) view.findViewById(R.id.imagem);
-            idProduto = (TextView) view.findViewById(R.id.id);
+//            idProduto = (TextView) view.findViewById(R.id.id);
             quantidade = (EditText) view.findViewById(R.id.quantidade);
-            atributo = (TextView) view.findViewById(R.id.atributo);
+//            atributo = (TextView) view.findViewById(R.id.atributo);
             nome = (TextView) view.findViewById(R.id.nome);
             preco = (TextView) view.findViewById(R.id.preco);
             remover = (Button) view.findViewById(R.id.remover);

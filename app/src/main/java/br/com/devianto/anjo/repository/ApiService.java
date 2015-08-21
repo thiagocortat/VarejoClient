@@ -4,6 +4,7 @@ package br.com.devianto.anjo.repository;
 import java.util.HashMap;
 
 import br.com.devianto.anjo.restmodel.models.ApiEstados;
+import br.com.devianto.anjo.restmodel.models.ApiFormaPagamentos;
 import br.com.devianto.anjo.restmodel.models.ApiProduto;
 import br.com.devianto.anjo.restmodel.models.ApiSecoes;
 import br.com.devianto.anjo.restmodel.models.User;
@@ -20,12 +21,30 @@ import retrofit.http.Path;
  */
 public interface ApiService {
 
+//    produto=http://www.allinshopp.com.br/ellasa/2/produtos.json
+//    secao=http://www.allinshopp.com.br/ellasa/2/secoes.json
+//    estado=http://www.allinshopp.com.br/ellasa/estados.json
+//    cep=http://www.allinshopp.com.br/ellasa/cep.json
+//    cliente=http://www.allinshopp.com.br/ellasa/clientes.json
+//    pedido=http://www.allinshopp.com.br/ellasa/2/carrinho-de-compras/checkout.json
+
     @GET("/perfis.json")
     @Headers({ "Content-type: application/json; charset=UTF-8" })
     void login(Callback<User> callback);
 
+    @GET("/3/carrinho-de-compras/checkout.json")
+    @Headers({ "Content-type: application/json; charset=UTF-8" })
+    void checkout(Callback<HashMap> callback);
 
-    @GET("/loja/1/produtos/todosAtributos/list.json")
+    @GET("/3/clientes.json")
+    @Headers({ "Content-type: application/json; charset=UTF-8" })
+    void registerUser(Callback<HashMap> callback);
+
+    @GET("/formaspagamento.json")
+    @Headers({ "Content-type: application/json; charset=UTF-8" })
+    void obtainFormasPagamento(Callback<ApiFormaPagamentos> callback);
+
+    @GET("/loja/3/produtos/todosAtributos/list.json")
     @Headers({ "Content-type: application/json; charset=UTF-8" })
     void obtainProdutos(Callback<ApiProduto> callback);
 
@@ -33,11 +52,11 @@ public interface ApiService {
     @Headers({ "Content-type: application/json; charset=UTF-8" })
     void obtainProdutosBySecao(@Path("id")long id, Callback<ApiProduto> callback);
 
-    @GET("/1/secoes.json")
+    @GET("/3/secoes.json")
     @Headers({ "Content-type: application/json; charset=UTF-8" })
     void obtainSecoes(Callback<ApiSecoes> callback);
 
-    @GET("/1/secoes.json")
+    @GET("/estado.json")
     @Headers({ "Content-type: application/json; charset=UTF-8" })
     void obtainEstados(Callback<ApiEstados> callback);
 

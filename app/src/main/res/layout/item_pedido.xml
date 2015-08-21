@@ -22,20 +22,20 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <TextView
-                    android:id="@id/id"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="10.0dip"
-                    android:paddingRight="10.0dip" android:text="id" android:layout_weight="0.9"/>
+            <!--<TextView-->
+                    <!--android:id="@id/id"-->
+                    <!--android:layout_width="fill_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:paddingLeft="10.0dip"-->
+                    <!--android:paddingRight="10.0dip" android:text="id" android:layout_weight="0.9"/>-->
 
             <TextView
                     android:id="@id/nome"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.2"
-                    android:paddingLeft="10.0dip"
-                    android:paddingRight="10.0dip" android:text="nome"/>
+                    android:paddingRight="5dp"
+                android:text="nome"/>
 
         </LinearLayout>
 
@@ -44,12 +44,12 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <TextView
-                    android:id="@id/atributo"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="10.0dip"
-                    android:paddingRight="10.0dip" android:text="atributo" android:layout_weight="0.3"/>
+            <!--<TextView-->
+                    <!--android:id="@id/atributo"-->
+                    <!--android:layout_width="fill_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:paddingLeft="10.0dip"-->
+                    <!--android:paddingRight="10.0dip" android:text="atributo" android:layout_weight="0.3"/>-->
 
 
             <com.rengwuxian.materialedittext.MaterialEditText
@@ -75,14 +75,26 @@
         
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-    <Button
+        <Button
             android:id="@id/remover"
             android:layout_width="100dp"
             android:layout_height="40dp"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
             android:layout_gravity="center_vertical"
             android:text="Remover"/>
+        <Button
+            android:id="@+id/update"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_vertical"
+            android:text="Atualizar"/>
+
+    </LinearLayout>
+
+
 
 </LinearLayout>
