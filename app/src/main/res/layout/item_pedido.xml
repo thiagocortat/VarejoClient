@@ -78,20 +78,35 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
         android:orientation="vertical">
 
-        <Button
+        <com.mikepenz.iconics.view.IconicsButton
             android:id="@id/remover"
-            android:layout_width="100dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center_vertical"
-            android:text="Remover"/>
-        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/primary"
+            android:text="{faw-remove}" />
+
+        <com.mikepenz.iconics.view.IconicsButton
             android:id="@+id/update"
-            android:layout_width="100dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center_vertical"
-            android:text="Atualizar"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/primary"
+            android:text="{faw-refresh}" />
+
+        <!--<Button-->
+            <!--android:id="@id/remover"-->
+            <!--android:layout_width="100dp"-->
+            <!--android:layout_height="40dp"-->
+            <!--android:layout_gravity="center_vertical"-->
+            <!--android:text="Remover"/>-->
+        <!--<Button-->
+            <!--android:id="@+id/update"-->
+            <!--android:layout_width="100dp"-->
+            <!--android:layout_height="40dp"-->
+            <!--android:layout_gravity="center_vertical"-->
+            <!--android:text="Atualizar"/>-->
 
     </LinearLayout>
 

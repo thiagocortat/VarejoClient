@@ -21,6 +21,8 @@ import br.com.devianto.anjo.alerts.ActionDialog;
 import br.com.devianto.anjo.alerts.ErrorAlert;
 import br.com.devianto.anjo.exceptions.IntegrationException;
 import br.com.devianto.anjo.exceptions.NoUniqueRegistryException;
+import br.com.devianto.anjo.repository.RestClient;
+import br.com.devianto.anjo.restmodel.models.ApiPedido;
 import br.com.devianto.anjo.utilities.PriceUtilities;
 import br.com.devianto.anjo.utilities.StringPattern;
 
@@ -42,7 +44,7 @@ public abstract class AbstractMeioPagamentoActivity extends AbstractActivity {
 			protected void onPreExecute() {
 				Log.d(TAG, "Iniciando a carga do pagamento");
 				progress = ProgressDialog.show(AbstractMeioPagamentoActivity.this,
-						getString(R.string.app_name), "Aguarde, estamos enviando o seu pedido para a nossa central", true);
+						getString(R.string.app_name), "Aguarde, estamos enviando seu pedido para a nossa central", true);
 			}
 
 			@Override
@@ -54,10 +56,10 @@ public abstract class AbstractMeioPagamentoActivity extends AbstractActivity {
 //					AutenticacaoParaEnvioDePedidoActivity activity = (AutenticacaoParaEnvioDePedidoActivity) context;
 //					//Colocando devido a um Bug NullPointerException no métodp abaixo
 //					integration = new IntegrationProcess(activity.getEmail(), activity.getPassword(), activity);
-//
 //					integration.enviarPedido();
-//
-					return "Pedido enviado com sucesso";
+
+					RestClient client = new RestClient();
+					return client.getApiService().checkout(new ApiPedido(PriceUtilities.getPedido()));
 
 				} catch (Exception e) {
 					return e.getMessage();
@@ -67,8 +69,6 @@ public abstract class AbstractMeioPagamentoActivity extends AbstractActivity {
 
 			@Override
 			protected void onPostExecute(String message) {
-
-				super.onPostExecute(message);
 
 				if (progress.isShowing()) {
 					progress.dismiss();

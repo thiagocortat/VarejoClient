@@ -33,6 +33,10 @@ public class Loja implements Serializable {
     public Loja() {
     }
 
+    public Loja(Long id) {
+        this.id = id;
+    }
+
     public Long getId() {
         return id;
     }

@@ -1,20 +1,21 @@
 package br.com.devianto.anjo.alerts;
 
 import android.content.Context;
+import android.support.v7.app.AlertDialog;
 
 import java.util.List;
 
 public abstract class AbstractDialog {
 
-    private final android.app.AlertDialog.Builder builder;
+    private final AlertDialog.Builder builder;
     private final Context context;
 
     public AbstractDialog(Context context) {
-        this.builder = new android.app.AlertDialog.Builder(context);
+        this.builder = new AlertDialog.Builder(context);
         this.context = context;
     }
 
-    protected android.app.AlertDialog.Builder getBuilder() {
+    protected AlertDialog.Builder getBuilder() {
         return builder;
     }
 

@@ -1,0 +1,82 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="br.com.devianto.anjo.fragments.OrdersFragment">
+
+    <LinearLayout
+        android:id="@+id/layoutTop"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="@dimen/margin">
+
+        <TextView android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Informe o CPF para ver seus últimos pedidos" />
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@id/cpf"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint=" Informe o CPF"
+            android:inputType="text|phone"
+            style="@style/EditTextCadastroStyle"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingRight="@dimen/margin_min"
+            android:gravity="right">
+
+            <Button
+                android:id="@id/salvar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:text="PRocurar" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_below="@+id/layoutTop"
+        android:background="@color/Silver"/>
+
+    <FrameLayout
+        android:id="@+id/frameRecycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/divider">
+
+        <!--<ProgressBar-->
+            <!--android:id="@+id/progress"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_centerInParent="true"-->
+            <!--android:visibility="gone"-->
+            <!--style="@style/Widget.AppCompat.ProgressBar"/>-->
+
+        <TextView
+            android:id="@+id/txNotContent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:padding="@dimen/margin"
+            style="@style/TextAppearance.AppCompat.Medium"
+            android:text="@string/empty_products"
+            android:visibility="gone"
+            tools:visibility="visible"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </FrameLayout>
+
+
+</RelativeLayout>

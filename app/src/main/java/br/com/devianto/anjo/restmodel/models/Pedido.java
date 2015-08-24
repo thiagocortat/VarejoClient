@@ -13,6 +13,8 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
+import br.com.devianto.anjo.repository.RestClient;
+
 @DatabaseTable
 public class Pedido
         implements Serializable {
@@ -23,7 +25,7 @@ public class Pedido
     private Cliente cliente;
 
     @Expose
-    @SerializedName("pagamento")
+//    @SerializedName("pagamento")
     @DatabaseField(foreign = true, foreignAutoRefresh = true)
     private DadosPagamento dadosPagamento;
 
@@ -48,12 +50,16 @@ public class Pedido
     @DatabaseField
     private String idTransacao;
 
+    private Loja loja;
+
     public Pedido() {
+        this.loja = new Loja(RestClient.ID_LOJA);
     }
 
     public Pedido(Cliente cliente) {
         this();
         this.cliente = cliente;
+        this.loja = new Loja(RestClient.ID_LOJA);
     }
 
     public void adicionar(Produto produto) {

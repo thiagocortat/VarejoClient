@@ -18,6 +18,9 @@ import java.io.File;
 import java.util.List;
 
 import br.com.devianto.anjo.R;
+import br.com.devianto.anjo.events.AtualizarItemPedidoOnClickListener;
+import br.com.devianto.anjo.events.AtualizarQuantidadeItemPedidoEvent;
+import br.com.devianto.anjo.events.RemoverItemPedidoOnClickListener;
 import br.com.devianto.anjo.restmodel.models.ItemPedido;
 import br.com.devianto.anjo.utilities.ParseUtilities;
 
@@ -56,8 +59,12 @@ public class ShoppingCartAdapter extends ArrayAdapter<ItemPedido> {
 //        // 2nd start a new load for the imageView
 //        Picasso.with(activity).load(uri).skipMemoryCache().into(viewHolder.imagem);
 
-//        viewHolder.remover.setTag(itempedido);
-//        viewHolder.remover.setOnClickListener(new RemoverItemPedidoOnClickListener());
+        viewHolder.remover.setTag(itempedido);
+        viewHolder.remover.setOnClickListener(new RemoverItemPedidoOnClickListener());
+
+        viewHolder.update.setTag(R.id.tag_first, itempedido);
+        viewHolder.update.setTag(R.id.tag_second, viewHolder.quantidade);
+        viewHolder.update.setOnClickListener(new AtualizarItemPedidoOnClickListener());
 
 //        viewHolder.idProduto.setText(itempedido.getId().toString());
 
@@ -87,7 +94,7 @@ public class ShoppingCartAdapter extends ArrayAdapter<ItemPedido> {
         ImageView imagem;
         TextView  nome, preco;//idProduto, atributo,
         EditText quantidade;
-        Button remover;
+        Button remover, update;
 
 
         public ViewHolder(View view){
@@ -99,6 +106,7 @@ public class ShoppingCartAdapter extends ArrayAdapter<ItemPedido> {
             nome = (TextView) view.findViewById(R.id.nome);
             preco = (TextView) view.findViewById(R.id.preco);
             remover = (Button) view.findViewById(R.id.remover);
+            update = (Button) view.findViewById(R.id.update);
 
         }
     }

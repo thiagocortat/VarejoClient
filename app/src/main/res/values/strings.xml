@@ -4,7 +4,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 
-    <string name="shopping_cart">Pedido</string>
+    <string name="shopping_cart">Carrinho de Compras</string>
     <string name="cliente">Cliente</string>
     <string name="abrir_dia">Clique aqui para abrir os dias</string>
     <string name="setores">Escolha uma das nossas seções</string>
@@ -40,4 +40,7 @@
         <item>Delivery</item>
         <item>Retirar produto na Loja e pagar no Caixa</item>
     </string-array>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

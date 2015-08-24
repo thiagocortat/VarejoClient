@@ -1,6 +1,7 @@
 package br.com.devianto.anjo;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -13,15 +14,22 @@ import android.widget.AdapterView;
 import android.widget.Toast;
 
 
+import com.mikepenz.fontawesome_typeface_library.FontAwesome;
+import com.mikepenz.materialdrawer.AccountHeader;
+import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
-import com.mikepenz.materialdrawer.accountswitcher.AccountHeader;
-import com.mikepenz.materialdrawer.accountswitcher.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
+import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
 import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
+import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 
+import br.com.devianto.anjo.activities.ShoppingCartActivity;
+import br.com.devianto.anjo.fragments.OrdersFragment;
 import br.com.devianto.anjo.fragments.ProdutosFragment;
+import br.com.devianto.anjo.restmodel.models.Pedido;
+import br.com.devianto.anjo.utilities.PriceUtilities;
 import br.com.thiagocortat.mylibrary.activities.BaseActivity;
 import br.com.thiagocortat.mylibrary.base.DemoFragment;
 
@@ -41,16 +49,16 @@ public class MainActivity extends BaseActivity {
 //        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
 //        //Add Profile
-//        final IProfile profile = new ProfileDrawerItem()
-//                .withName("João").withEmail("joao.teste@projetandoo.com")
-//                .setEnabled(false);
-////                .withIcon(getResources().getDrawable(R.drawable.profile5));
+        final IProfile profile = new ProfileDrawerItem()
+                .withName(getString(R.string.app_name))
+                .withSetSelected(false)
+                .withIcon(getResources().getDrawable(R.mipmap.ic_launcher));
 //
         // Create the AccountHeader
         AccountHeader headerResult = new AccountHeaderBuilder()
                 .withActivity(this)
                 .withHeaderBackground(R.drawable.img_header)
-//                .addProfiles(profile)
+                .addProfiles(profile)
                 .withAlternativeProfileHeaderSwitching(false)
                 .withProfileImagesClickable(false)
                 .withSelectionListEnabled(false)
@@ -64,33 +72,37 @@ public class MainActivity extends BaseActivity {
 //                .withActionBarDrawerToggleAnimated(true)
 //                .withActionBarDrawerToggle(true)
                 .addDrawerItems(
-                        new PrimaryDrawerItem().withName("Produtos").withIdentifier(0),
-//                        new PrimaryDrawerItem().withName("Produtos").withIdentifier(1),
+                        new PrimaryDrawerItem().withName("Produtos").withIdentifier(0).withIcon(FontAwesome.Icon.faw_home),
+                        new PrimaryDrawerItem().withName("Meus Pedidos").withIdentifier(1).withIcon(FontAwesome.Icon.faw_desktop),
+                        new PrimaryDrawerItem().withName("Carrinho de Compras").withIdentifier(2).withIcon(FontAwesome.Icon.faw_shopping_cart),
 //                        new PrimaryDrawerItem().withName("RH").withIdentifier(2),
 //                        new PrimaryDrawerItem().withName("CRM").withIdentifier(3),
 //                        new DividerDrawerItem(),
-                        new SecondaryDrawerItem().withName("Configuração"),
-                        new SecondaryDrawerItem().withName("Logout")
+                        new SecondaryDrawerItem().withName("Configuração")
+//                        new SecondaryDrawerItem().withName("Logout")
                 )
+
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
-                    public boolean onItemClick(AdapterView<?> parent, View view, int i, long id, IDrawerItem drawerItem) {
+                    public boolean onItemClick(View view, int i, IDrawerItem iDrawerItem) {
 
-                        if (i == 0) {
+                        if (iDrawerItem.getIdentifier() == 0) {
                             Fragment f = ProdutosFragment.newInstance();
                             getFragmentManager().beginTransaction().replace(R.id.frame_container, f).commit();
-                        } else {
+                        } else if (iDrawerItem.getIdentifier() == 1) {
+                            Fragment f = OrdersFragment.newInstance();
+                            getFragmentManager().beginTransaction().replace(R.id.frame_container, f).commit();
+                        }else if (iDrawerItem.getIdentifier() == 2) {
+                            Intent intent = new Intent(MainActivity.this, ShoppingCartActivity.class);
+                            startActivity(intent);
+                        }
+                        else {
                             Fragment f = DemoFragment.newInstance("");
                             getFragmentManager().beginTransaction().replace(R.id.frame_container, f).commit();
                         }
 //                          else if (i == 1) {
 //                            Fragment f = ProductFilterFragment.newInstance();
 //                            getFragmentManager().beginTransaction().replace(R.id.frame_container, f).commit();
-//                        } else if (i == 2) {
-//                            Fragment f = EmployeeFilterFragment.newInstance();
-//                            getFragmentManager().beginTransaction().replace(R.id.frame_container, f).commit();
-//                        } else if (i == 3) {
-
 //                        } else if (i == 5) {
 //                            SettingsFragment f = SettingsFragment.newInstance();
 //                            getFragmentManager().beginTransaction().replace(R.id.frame_container, f).commit();
@@ -98,8 +110,8 @@ public class MainActivity extends BaseActivity {
 
                         return false;
                     }
-
                 })
+
                         //just use this with the Drawer.Builder
                 //.withSelectedItem(0)
                 .withSavedInstance(savedInstanceState)

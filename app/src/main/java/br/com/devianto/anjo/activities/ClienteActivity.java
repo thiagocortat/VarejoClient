@@ -38,6 +38,8 @@ public class ClienteActivity extends AbstractActivity
 
     private Cliente mCliente;
 
+//    private String[] states, statesID, statesUF;
+
     private void loadFromCliente(Cliente cliente) {
 
         this.setId(cliente.getId());
@@ -51,19 +53,19 @@ public class ClienteActivity extends AbstractActivity
         this.setCep(cliente.getEndereco().getCep());
         setEstado(cliente.getEndereco().getEstado());
         this.setTelefone(cliente.getEndereco().getTelefone());
-        this.setCelular(cliente.getEndereco().getCelular());
+//        this.setCelular(cliente.getEndereco().getCelular());
 
     }
 
-    public void setCelular(String celular) {
-
-        try {
-            celular = celular.replace("(", "").replace(")", "").replace("-", "");
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        aq.id(R.id.celular).text(celular);
-    }
+//    public void setCelular(String celular) {
+//
+//        try {
+//            celular = celular.replace("(", "").replace(")", "").replace("-", "");
+//        }catch (Exception e){
+//            e.printStackTrace();
+//        }
+//        aq.id(R.id.celular).text(celular);
+//    }
 
     public void setTelefone(String telefone) {
         try {
@@ -118,13 +120,21 @@ public class ClienteActivity extends AbstractActivity
     @SuppressWarnings("unchecked")
     public void setEstado(Estado estado) {
         Spinner estados = aq.id(R.id.estados).getSpinner();
-        ArrayAdapter<Estado> adapter = (ArrayAdapter<Estado>) estados.getAdapter();
-        int position = adapter.getPosition(estado);
+        ArrayAdapter<String> adapter = (ArrayAdapter<String>) estados.getAdapter();
+        int position = adapter.getPosition(estado.getNome());
         estados.setSelection(position);
     }
 
+    @SuppressWarnings("unchecked")
     public Estado getEstado() {
-        return (Estado) aq.id(R.id.estados).getSelectedItem();
+
+        int position = aq.id(R.id.estados).getSelectedItemPosition();
+        String state = getResources().getStringArray(R.array.arrayStates)[position];
+        String stateID = getResources().getStringArray(R.array.arrayStatesID)[position];
+        String stateUF = getResources().getStringArray(R.array.arrayStatesSIGLA)[position];
+
+        return new Estado(Long.getLong(stateID,0), state, stateUF);
+//        return (Estado) aq.id(R.id.estados).getSelectedItem();
     }
 
     private Cliente createCliente() {
@@ -143,7 +153,7 @@ public class ClienteActivity extends AbstractActivity
 
         mCliente.getEndereco().setEstado(this.getEstado());
         mCliente.getEndereco().setTelefone(getTelefone());
-        mCliente.getEndereco().setCelular(getCelular());
+//        mCliente.getEndereco().setCelular(getCelular());
         mCliente.getEndereco().setCep(this.getCep());
         mCliente.getEndereco().setBairro(this.getBairro());
         mCliente.getEndereco().setCidade(this.getCidade());
@@ -267,11 +277,15 @@ public class ClienteActivity extends AbstractActivity
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+
+
         aq = new AQuery(this);
-//        Spinner spinner = aq.id(R.id.estados).getSpinner();
-//        List<Estado> estados = new EstadosRepository(this).getAll();
-//        estados.add(0, new Estado("", "Selecione um Estado"));
-//        ArrayAdapter<Estado> arrayadapter = new ArrayAdapter<Estado>(this, android.R.layout.simple_list_item_1, estados);
+        Spinner spinner = aq.id(R.id.estados).getSpinner();
+
+
+////        List<Estado> estados = new EstadosRepository(this).getAll();
+////        estados.add(0, new Estado("", "Selecione um Estado"));
+//        ArrayAdapter<String> arrayadapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, states);
 //        spinner.setAdapter(arrayadapter);
 
         aq.id(R.id.salvar).clicked(this);
@@ -280,8 +294,8 @@ public class ClienteActivity extends AbstractActivity
 
         new MaskedWatcher("##/##/####", aq.id(R.id.dataNascimento).getEditText()).setAcceptOnlyNumbers(true);
         new MaskedWatcher("#####-###", aq.id(R.id.cep).getEditText()).setAcceptOnlyNumbers(true);
-        new MaskedWatcher("(##)#####-####", aq.id(R.id.celular).getEditText()).setAcceptOnlyNumbers(true);
-        new MaskedWatcher("(##)####-####", aq.id(R.id.telefone).getEditText()).setAcceptOnlyNumbers(true);
+//        new MaskedWatcher("(##)#####-####", aq.id(R.id.celular).getEditText()).setAcceptOnlyNumbers(true);
+        new MaskedWatcher("(##)#####-####", aq.id(R.id.telefone).getEditText()).setAcceptOnlyNumbers(true);
 
 //       mCliente = (Cliente) getIntent().getExtras().get(Constante.CLIENTE);
 

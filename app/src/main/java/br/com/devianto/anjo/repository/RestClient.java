@@ -23,6 +23,7 @@ public class RestClient {
 
     private ApiService apiService;
 
+    public static final long ID_LOJA =   3;
     private final static String apiBaseUrl = "http://www.allinshopp.com.br/varejo";
 
     private static String EMAIL_ACCOUNT = "marcelosrodrigues@globo.com";
@@ -35,7 +36,8 @@ public class RestClient {
     private void init() {
         Gson gson = new GsonBuilder()
                 .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
-                .registerTypeAdapter(Date.class, new DateTypeAdapter())
+                .setDateFormat("yyyy-MM-dd HH:mm:ss.S z")
+//                .registerTypeAdapter(Date.class, new DateTypeAdapter())
                 .create();
 
         RestAdapter.Builder builder= new RestAdapter.Builder()

@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import br.com.devianto.anjo.restmodel.models.ApiEstados;
 import br.com.devianto.anjo.restmodel.models.ApiFormaPagamentos;
+import br.com.devianto.anjo.restmodel.models.ApiPedido;
 import br.com.devianto.anjo.restmodel.models.ApiProduto;
 import br.com.devianto.anjo.restmodel.models.ApiSecoes;
 import br.com.devianto.anjo.restmodel.models.User;
@@ -15,6 +16,8 @@ import retrofit.http.Header;
 import retrofit.http.Headers;
 import retrofit.http.POST;
 import retrofit.http.Path;
+
+import static br.com.devianto.anjo.repository.RestClient.*;
 
 /**
  * Created by thiagocortat on 5/24/15.
@@ -27,16 +30,32 @@ public interface ApiService {
 //    cep=http://www.allinshopp.com.br/ellasa/cep.json
 //    cliente=http://www.allinshopp.com.br/ellasa/clientes.json
 //    pedido=http://www.allinshopp.com.br/ellasa/2/carrinho-de-compras/checkout.json
+//    http://www.allinshopp.com.br/varejo/{loja}/{cpf}/meus-dados.json
+//    http://www.allinshopp.com.br/varejo/{loja}/{cpf}/meus-pedidos.json
+
+
+
+    @GET("/" + ID_LOJA +"/{cpf}/meus-dados.json")
+    @Headers({ "Content-type: application/json; charset=UTF-8" })
+    void obtainUserData(@Path("cpf")String cpf, Callback<HashMap> callback);
+
+    @GET("/" + ID_LOJA +"/{cpf}/meus-pedidos.json")
+    @Headers({ "Content-type: application/json; charset=UTF-8" })
+    void obtainUserOrders(@Path("cpf")String cpf, Callback<HashMap> callback);
 
     @GET("/perfis.json")
     @Headers({ "Content-type: application/json; charset=UTF-8" })
     void login(Callback<User> callback);
 
-    @GET("/3/carrinho-de-compras/checkout.json")
+    @POST("/carrinho-de-compras/checkout.json")
     @Headers({ "Content-type: application/json; charset=UTF-8" })
-    void checkout(Callback<HashMap> callback);
+    void checkout(@Body ApiPedido apiPedido, Callback<HashMap> callback);
 
-    @GET("/3/clientes.json")
+    @POST("/carrinho-de-compras/checkout.json")
+    @Headers({ "Content-type: application/json; charset=UTF-8" })
+    String checkout(@Body ApiPedido apiPedido);
+
+    @GET("/" + ID_LOJA +"/clientes.json")
     @Headers({ "Content-type: application/json; charset=UTF-8" })
     void registerUser(Callback<HashMap> callback);
 
@@ -44,7 +63,7 @@ public interface ApiService {
     @Headers({ "Content-type: application/json; charset=UTF-8" })
     void obtainFormasPagamento(Callback<ApiFormaPagamentos> callback);
 
-    @GET("/loja/3/produtos/todosAtributos/list.json")
+    @GET("/loja/" + ID_LOJA + "/produtos/todosAtributos/list.json")
     @Headers({ "Content-type: application/json; charset=UTF-8" })
     void obtainProdutos(Callback<ApiProduto> callback);
 
@@ -52,7 +71,7 @@ public interface ApiService {
     @Headers({ "Content-type: application/json; charset=UTF-8" })
     void obtainProdutosBySecao(@Path("id")long id, Callback<ApiProduto> callback);
 
-    @GET("/3/secoes.json")
+    @GET("/" + ID_LOJA +"/secoes.json")
     @Headers({ "Content-type: application/json; charset=UTF-8" })
     void obtainSecoes(Callback<ApiSecoes> callback);
 

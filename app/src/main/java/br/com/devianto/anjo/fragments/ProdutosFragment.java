@@ -153,9 +153,9 @@ public class ProdutosFragment extends BaseFragment {
                 adapter.setProducts(apiProduto.getProdutos());
             }
 
-            setContentEmpty((apiProduto.getProdutos().size() == 0));
-
             hideProgress();
+
+            setContentEmpty((apiProduto.getProdutos().size() == 0));
         }
 
         @Override
