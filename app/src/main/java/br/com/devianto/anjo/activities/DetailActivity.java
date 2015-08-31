@@ -12,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.etiennelawlor.imagegallery.library.activities.ImageGalleryActivity;
+import com.etiennelawlor.imagegallery.library.enums.PaletteColorType;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
@@ -30,6 +32,7 @@ import br.com.thiagocortat.mylibrary.utilities.Constante;
 import br.com.thiagocortat.mylibrary.utilities.ParseUtilities;
 import br.com.thiagocortat.mylibrary.utilities.StringUtils;
 import butterknife.InjectView;
+import butterknife.OnClick;
 
 
 public class DetailActivity extends BaseActivity implements View.OnClickListener {
@@ -97,6 +100,21 @@ public class DetailActivity extends BaseActivity implements View.OnClickListener
 
         adicionar.setTag(mProduto);
         adicionar.setOnClickListener(this);
+    }
+
+    @OnClick(R.id.imagemProduto)
+    public void clickOnimage(){
+        Intent intent = new Intent(this, ImageGalleryActivity.class);
+
+        ArrayList<String> images = new ArrayList<>();
+        for (Imagem imagem : mProduto.getImagens()) {
+            images.add(imagem.getURL());
+        }
+
+        intent.putStringArrayListExtra("images", images);
+        intent.putExtra("palette_color_type", PaletteColorType.LIGHT_VIBRANT);
+
+        startActivity(intent);
     }
 
     @Override

@@ -72,6 +72,16 @@
             android:label="@string/credit_card"
             android:screenOrientation="portrait" />
 
+
+
+        <activity android:name="com.github.mmin18.layoutcast.ResetActivity" />
+
+        <activity
+            android:name="com.etiennelawlor.imagegallery.library.activities.ImageGalleryActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label=""
+            android:theme="@style/ImageGalleryTheme" />
+
     </application>
 
 </manifest>

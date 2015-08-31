@@ -69,7 +69,7 @@ public class CartaoCreditoActivity extends AbstractMeioPagamentoActivity
 //                    intent = new Intent(this, AutenticacaoParaEnvioDePedidoActivity.class);
 //                    startActivity(intent);
 //                    this.finish();
-
+                    PriceUtilities.getPedido().setDadosPagamento(dadospagamento);
                     sendPurchaseToServer();
 
                 }

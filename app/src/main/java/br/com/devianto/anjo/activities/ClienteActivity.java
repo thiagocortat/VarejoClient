@@ -133,7 +133,7 @@ public class ClienteActivity extends AbstractActivity
         String stateID = getResources().getStringArray(R.array.arrayStatesID)[position];
         String stateUF = getResources().getStringArray(R.array.arrayStatesSIGLA)[position];
 
-        return new Estado(Long.getLong(stateID,0), state, stateUF);
+        return new Estado(Long.parseLong(stateID), state, stateUF);
 //        return (Estado) aq.id(R.id.estados).getSelectedItem();
     }
 

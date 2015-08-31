@@ -57,5 +57,13 @@ dependencies {
     compile 'com.mikepenz:iconics-core:1.7.3@aar'
     compile 'com.mikepenz:fontawesome-typeface:4.4.0.1@aar'
 
+
+    compile 'com.lid.labelview:lib:0.1.1'
+    compile 'net.the4thdimension:android-utils:3.0.2'
+    compile 'com.github.mmin18.layoutcast:library:1.+@aar'
+
+    compile 'com.github.lawloretienne:imagegallery:0.0.5'
+    compile 'net.the4thdimension:android-utils:3.0.2'
+
     compile project(":mylibrary")
 }

@@ -58,7 +58,7 @@
                         android:layout_gravity="top|center_horizontal"
                         android:layout_margin="@dimen/margin"
                         android:text="Promoção do dia"
-                        android:textSize="20sp" />
+                        android:textSize="40sp" />
 
                     <TextView
                         android:id="@+id/descricao"

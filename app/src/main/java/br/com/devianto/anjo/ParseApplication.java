@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.content.ContextWrapper;
 
+import com.github.mmin18.layoutcast.LayoutCast;
 import com.pixplicity.easyprefs.library.Prefs;
 
 
@@ -16,6 +17,10 @@ public class ParseApplication extends Application {
     super.onCreate();
 
     setAppContext(getApplicationContext());
+
+      if (BuildConfig.DEBUG) {
+          LayoutCast.init(this);
+      }
 
     // Initialize the Prefs class
     new Prefs.Builder()
