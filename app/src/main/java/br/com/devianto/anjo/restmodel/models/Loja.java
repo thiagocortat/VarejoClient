@@ -23,11 +23,11 @@ public class Loja implements Serializable {
     private Long id;
 
     @DatabaseField(columnName = NOME_FIELD_NAME)
-    @Expose
+    @Expose(serialize = false)
     private String nome;
 
     @DatabaseField(columnName = CHANNEL_FIELD_NAME)
-    @Expose
+    @Expose(serialize = false)
     private String channel;
 
     public Loja() {

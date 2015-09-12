@@ -101,7 +101,7 @@ public class CartaoCreditoActivity extends AbstractMeioPagamentoActivity
 
     private DadosPagamento criarDadosPagamento(Pedido pedido) {
         DadosPagamento dadospagamento = new DadosPagamento();
-        dadospagamento.setPedido(pedido);
+//        dadospagamento.setPedido(pedido);
         dadospagamento.setPortador(getPortador());
         dadospagamento.setNumero(getNumeroCartao());
         dadospagamento.setDataValidade(getDataValidade());

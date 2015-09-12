@@ -24,7 +24,6 @@ public class Pedido
     @DatabaseField(foreign = true, foreignAutoRefresh = true)
     private Cliente cliente;
 
-    @Expose
 //    @SerializedName("pagamento")
     @DatabaseField(foreign = true, foreignAutoRefresh = true)
     private DadosPagamento dadosPagamento;

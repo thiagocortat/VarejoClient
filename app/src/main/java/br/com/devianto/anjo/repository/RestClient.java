@@ -36,7 +36,8 @@ public class RestClient {
     private void init() {
         Gson gson = new GsonBuilder()
                 .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
-                .setDateFormat("yyyy-MM-dd HH:mm:ss.S z")
+//                .setDateFormat("yyyy-MM-dd HH:mm:ss.S z")
+                .setDateFormat("dd-MM-yyyy")
 //                .registerTypeAdapter(Date.class, new DateTypeAdapter())
                 .create();
 

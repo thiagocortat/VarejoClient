@@ -43,9 +43,9 @@ public class DadosPagamento extends ValidationConstraint
     @DatabaseField
     @SerializedName("numero")
     private String numeroCartao;
-
-    @DatabaseField(foreign = true)
-    private Pedido pedido;
+//
+//    @DatabaseField(foreign = true)
+//    private Pedido pedido;
 
     @Expose
     @DatabaseField
@@ -103,14 +103,14 @@ public class DadosPagamento extends ValidationConstraint
         this.numeroCartao = numeroCartao;
     }
 
-    public void setPedido(Pedido pedido) {
-        this.pedido = pedido;
-        this.formaPagamento = pedido.getFormaPagamento();
-    }
-
-    public Pedido getPedido() {
-        return this.pedido;
-    }
+//    public void setPedido(Pedido pedido) {
+//        this.pedido = pedido;
+//        this.formaPagamento = pedido.getFormaPagamento();
+//    }
+//
+//    public Pedido getPedido() {
+//        return this.pedido;
+//    }
 
     protected void validate() {
         validateCartaoCredito();

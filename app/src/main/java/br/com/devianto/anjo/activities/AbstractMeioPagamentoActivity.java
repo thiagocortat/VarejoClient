@@ -1,5 +1,6 @@
 package br.com.devianto.anjo.activities;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -7,8 +8,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Toast;
 
 import com.androidquery.AQuery;
+import com.google.gson.GsonBuilder;
 
 import org.apache.commons.validator.GenericValidator;
 import org.json.JSONException;
@@ -59,10 +62,14 @@ public abstract class AbstractMeioPagamentoActivity extends AbstractActivity {
 //					integration.enviarPedido();
 
 					RestClient client = new RestClient();
-					return client.getApiService().checkout(new ApiPedido(PriceUtilities.getPedido()));
+					ApiPedido api = new ApiPedido(PriceUtilities.getPedido());
+					String json = new GsonBuilder().create().toJson(api);
+					return client.getApiService().checkout(api);
 
 				} catch (Exception e) {
-					return e.getMessage();
+					ApiPedido api = new ApiPedido(PriceUtilities.getPedido());
+					String json = new GsonBuilder().create().toJson(api);
+					return json;
 				}
 				//return "Pedido enviado com sucesso";
 			}
@@ -74,12 +81,18 @@ public abstract class AbstractMeioPagamentoActivity extends AbstractActivity {
 					progress.dismiss();
 				}
 
-				(new ActionDialog(AbstractMeioPagamentoActivity.this))
-						.setTitle(getString(R.string.app_name))
-						.setMessage("Seu pedido foi concluído com sucesso, obrigado pela preferência")
-						.show();
+				Toast.makeText(getBaseContext(), "" + message, Toast.LENGTH_LONG).show();
+				AlertDialog.Builder alert = new AlertDialog.Builder(AbstractMeioPagamentoActivity.this);
+				alert.setTitle("Deu Erro");
+				alert.setMessage(message);
+				alert.show();
 
-				PriceUtilities.novoPedido();
+//				(new ActionDialog(AbstractMeioPagamentoActivity.this))
+//						.setTitle(getString(R.string.app_name))
+//						.setMessage("Seu pedido foi concluído com sucesso, obrigado pela preferência")
+//						.show();
+//
+//				PriceUtilities.novoPedido();
 
 				//TODO:AQUI POSSO CHAMAR UMA ACTIVITY DE RECIBO DE COMPRA!!!!!!
 
