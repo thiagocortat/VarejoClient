@@ -34,16 +34,16 @@ public class Endereco extends ValidationConstraint implements Serializable {
 
     public static final String CLIENTE_FIELD_NAME = "cliente_id";
 
-    @DatabaseField(columnName = Endereco.CLIENTE_FIELD_NAME, foreign = true, foreignAutoRefresh = true)
-    private Endereco endereco;
+//    @DatabaseField(columnName = Endereco.CLIENTE_FIELD_NAME, foreign = true, foreignAutoRefresh = true)
+//    private Endereco endereco;
 
-	@DatabaseField(columnName = Endereco.ID_FIELD_NAME, generatedId = true)
-	private Long internalId;
+//	@DatabaseField(columnName = Endereco.ID_FIELD_NAME, generatedId = true)
+//	private Long internalId;
 
-    @Expose
-	@SerializedName("id")
-	@DatabaseField(columnName = Endereco.BACKOFFICE_ID_FIELD_NAME)
-	private Long backofficeId;
+//    @Expose
+//	@SerializedName("id")
+//	@DatabaseField(columnName = Endereco.BACKOFFICE_ID_FIELD_NAME)
+//	private Long backofficeId;
 
     @Expose
 	@SerializedName("bairro")
@@ -78,14 +78,21 @@ public class Endereco extends ValidationConstraint implements Serializable {
     @Expose
 	@SerializedName("celular")
 //	@DatabaseField(columnName = Endereco.CELULAR_FIELD_NAME)
-	private String celular;
+	private String celular = "21981363699";
+
+	@Expose
+	@SerializedName("complemento")
+//	@DatabaseField(columnName = Endereco.CELULAR_FIELD_NAME)
+	private String complemento = "APTO 206";
+
+
 
 	public String getBairro() {
 		return bairro;
 	}
 
 	public String getCep() {
-		return cep;
+		return cep.replace("-","");
 	}
 
 	public String getCidade() {
@@ -96,9 +103,9 @@ public class Endereco extends ValidationConstraint implements Serializable {
 		return estado;
 	}
 
-	public Long getId() {
-		return internalId;
-	}
+//	public Long getId() {
+//		return internalId;
+//	}
 
 	public String getLogradouro() {
 		return logradouro;
@@ -108,24 +115,24 @@ public class Endereco extends ValidationConstraint implements Serializable {
 		this.estado = estado;
 	}
 
-	public void setId(final Long id) {
-		this.internalId = id;
-	}
+//	public void setId(final Long id) {
+//		this.internalId = id;
+//	}
 
 	public String getCelular() {
-		return this.celular;
+		return this.celular.replace("(", "").replace(")", "").replace("-","");
 	}
 
 	public String getTelefone() {
-		return this.telefone;
+		return this.telefone.replace("(", "").replace(")", "").replace("-","");
 	}
 
 	public void setTelefone(final String telefone) {
-		this.telefone = telefone;
+		this.telefone = telefone.replace("(", "").replace(")", "").replace("-","");
 	}
 
 	public void setCelular(final String celular) {
-		this.celular = celular;
+		this.celular = celular.replace("(", "").replace(")", "").replace("-","");
 	}
 
 	public void setBairro(String bairro) {
@@ -133,7 +140,8 @@ public class Endereco extends ValidationConstraint implements Serializable {
 	}
 
 	public void setCep(String cep) {
-		this.cep = cep;
+
+		this.cep = cep.replace("-","");
 	}
 
 	public void setCidade(String cidade) {

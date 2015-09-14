@@ -23,6 +23,7 @@ import br.com.devianto.anjo.alerts.ErrorAlert;
 import br.com.devianto.anjo.components.MaskedWatcher;
 import br.com.devianto.anjo.restmodel.models.DadosPagamento;
 import br.com.devianto.anjo.restmodel.models.Pedido;
+import br.com.devianto.anjo.restmodel.models.Portador;
 import br.com.devianto.anjo.utilities.ParseUtilities;
 import br.com.devianto.anjo.utilities.PriceUtilities;
 
@@ -102,7 +103,8 @@ public class CartaoCreditoActivity extends AbstractMeioPagamentoActivity
     private DadosPagamento criarDadosPagamento(Pedido pedido) {
         DadosPagamento dadospagamento = new DadosPagamento();
 //        dadospagamento.setPedido(pedido);
-        dadospagamento.setPortador(getPortador());
+//        dadospagamento.setPortador(getPortador());
+        dadospagamento.setPortador(new Portador(pedido.getCliente(), getPortador()));
         dadospagamento.setNumero(getNumeroCartao());
         dadospagamento.setDataValidade(getDataValidade());
         dadospagamento.setCVV(getCVV());
@@ -120,7 +122,7 @@ public class CartaoCreditoActivity extends AbstractMeioPagamentoActivity
     }
 
     public String getCPF() {
-        return aq.id(R.id.cpf).getText().toString();
+        return aq.id(R.id.cpf).getText().toString().replace(".", "").replace("-","");
     }
 
     public String getCVV() {

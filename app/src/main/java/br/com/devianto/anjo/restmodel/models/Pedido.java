@@ -28,14 +28,14 @@ public class Pedido
     @DatabaseField(foreign = true, foreignAutoRefresh = true)
     private DadosPagamento dadosPagamento;
 
-    @DatabaseField
-    private Date dataEnvio;
-
-    @DatabaseField
-    private Date dataPedido = new Date();
-
-    @DatabaseField
-    private Date dataPagamento;
+//    @DatabaseField
+//    private Date dataEnvio;
+//
+//    @DatabaseField
+//    private Date dataPedido = new Date();
+//
+//    @DatabaseField
+//    private Date dataPagamento;
 
     @DatabaseField(foreign = true, foreignAutoRefresh = true)
     private FormaPagamento formaPagamento;
@@ -76,10 +76,10 @@ public class Pedido
 
     }
 
-    public void enviado() {
-        Date date = new Date();
-        dataEnvio = date;
-    }
+//    public void enviado() {
+//        Date date = new Date();
+//        dataEnvio = date;
+//    }
 
     public Cliente getCliente() {
         return cliente;

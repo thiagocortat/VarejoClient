@@ -37,12 +37,12 @@ public class Cliente extends ValidationConstraint
     @Expose
     @SerializedName("dataNascimento")
     @DatabaseField(columnName = Cliente.DATA_NASCIMENTO_FIELD_NAME)
-    private Date dataNascimento;
+    protected Date dataNascimento;
 
     @Expose
     @SerializedName("email")
     @DatabaseField(columnName = Cliente.EMAIL_FIELD_NAME)
-    private String email;
+    protected String email;
 
     @DatabaseField(columnName = Cliente.ID_FIELD_NAME, generatedId = true)
     private Long internalId;
@@ -55,17 +55,25 @@ public class Cliente extends ValidationConstraint
     @Expose
     @SerializedName("primeiroNome")
     @DatabaseField(columnName = Cliente.PRIMEIRO_NOME_FIELD_NAME)
-    private String primeiroNome;
+    protected String primeiroNome;
 
     @Expose
     @SerializedName("ultimoNome")
     @DatabaseField(columnName = Cliente.ULTIMO_NOME_FIELD_NAME)
-    private String ultimoNome;
+    protected String ultimoNome;
 
     @Expose
     @SerializedName("endereco")
     @DatabaseField(columnName = Cliente.ENDERECO_FIELD_NAME, foreign = true,  canBeNull = false, foreignAutoCreate = true, foreignAutoRefresh = true)
-    private Endereco endereco;
+    protected Endereco endereco;
+
+    @Expose
+    @SerializedName("cpf")
+    private String cpf = "07032327702";
+
+    @Expose
+    @SerializedName("sexo")
+    private String sexo = "MASCULINO";
 
     public Cliente() {
         super();
@@ -86,6 +94,14 @@ public class Cliente extends ValidationConstraint
 
     public String getNomeCompleto() {
         return String.format("%s %s", this.primeiroNome, this.ultimoNome);
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
     public JSONObject toJSON()

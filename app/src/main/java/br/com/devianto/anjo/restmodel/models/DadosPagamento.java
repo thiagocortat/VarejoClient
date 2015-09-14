@@ -37,7 +37,7 @@ public class DadosPagamento extends ValidationConstraint
     @Expose
     @DatabaseField
     @SerializedName("portador")
-    private String portador;
+    private Portador portador;
 
     @Expose
     @DatabaseField
@@ -76,7 +76,14 @@ public class DadosPagamento extends ValidationConstraint
 //            add("Nome do portador deve ser composto por nome e sobrenome");
 //        }
 
+    }
 
+    public Portador getPortador() {
+        return portador;
+    }
+
+    public void setPortador(Portador portador) {
+        this.portador = portador;
     }
 
     public Integer getQtdParcelas() {
@@ -95,9 +102,7 @@ public class DadosPagamento extends ValidationConstraint
         this.dataValidade = dataValidade;
     }
 
-    public void setPortador(String portador) {
-        this.portador = portador;
-    }
+
 
     public void setNumero(String numeroCartao) {
         this.numeroCartao = numeroCartao;
@@ -124,19 +129,23 @@ public class DadosPagamento extends ValidationConstraint
         return numeroCartao;
     }
 
-    public String getPortador() {
-        return this.portador;
-    }
 
     public String getCVV() {
         return this.cvv;
     }
 
     public String getCPF() {
+        if (cpf != null) {
+            cpf.replace(".", "").replace("-","");
+        }
         return this.cpf;
     }
 
     public void setCPF(String cpf) {
+
+        if (cpf != null) {
+            cpf.replace(".", "").replace("-","");
+        }
         this.cpf = cpf;
     }
 

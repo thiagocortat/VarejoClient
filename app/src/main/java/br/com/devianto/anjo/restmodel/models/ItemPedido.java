@@ -20,8 +20,8 @@ public class ItemPedido
     @DatabaseField(generatedId = true)
     private Long id = 0L;
 
-    @DatabaseField(foreign = true, foreignAutoRefresh = true)
-    private Pedido pedido;
+//    @DatabaseField(foreign = true, foreignAutoRefresh = true)
+//    private Pedido pedido;
 
     @Expose
     @DatabaseField(foreign = true, foreignAutoRefresh = true)
@@ -31,6 +31,9 @@ public class ItemPedido
     @DatabaseField
     private Long quantidade;
 
+    @Expose
+    @DatabaseField
+    private double preco = 1;
 
     public ItemPedido() {
     }
@@ -39,7 +42,7 @@ public class ItemPedido
         this();
         this.produto = produto;
         this.quantidade = 1L;
-        this.pedido = pedido;
+//        this.pedido = pedido;
     }
 
     public void aumentar() {
@@ -110,9 +113,9 @@ public class ItemPedido
     }
 
 
-    public void setPedido(Pedido pedido1) {
-        pedido = pedido1;
-    }
+//    public void setPedido(Pedido pedido1) {
+//        pedido = pedido1;
+//    }
 
     public void setQuantidade(Long long1) {
         quantidade = long1;
